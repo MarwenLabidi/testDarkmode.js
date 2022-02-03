@@ -6,12 +6,189 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
+	<style>
+		.bg-gradient1 span,
+		.bg-gradient1:before {
+			background: #52A0FD;
+			background: -moz-linear-gradient(left, #52A0FD 0%, #00e2fa 80%, #00e2fa 100%);
+			background: -webkit-linear-gradient(left, #52A0FD 0%, #00e2fa 80%, #00e2fa 100%);
+			background: linear-gradient(to right, #52A0FD 0%, #00e2fa 80%, #00e2fa 100%);
+		}
+
+		.bg-gradient2 span,
+		.bg-gradient2:before {
+			background: #44ea76;
+			background: -moz-linear-gradient(left, #44ea76 0%, #39fad7 80%, #39fad7 100%);
+			background: -webkit-linear-gradient(left, #44ea76 0%, #39fad7 80%, #39fad7 100%);
+			background: linear-gradient(to right, #44ea76 0%, #39fad7 80%, #39fad7 100%);
+		}
+
+		.bg-gradient3 span,
+		.bg-gradient3:before {
+			background: #fa6c9f;
+			background: -moz-linear-gradient(left, #fa6c9f 0%, #ffe140 80%, #ffe140 100%);
+			background: -webkit-linear-gradient(left, #fa6c9f 0%, #ffe140 80%, #ffe140 100%);
+			background: linear-gradient(to right, #fa6c9f 0%, #ffe140 80%, #ffe140 100%);
+		}
+
+		/* General */
+		.wrapper {
+			margin: 5% auto;
+			text-align: center;
+			transform-style: perserve-3d;
+			perspecive: 800px;
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		a:hover,
+		a:focus,
+		a:active {
+			text-decoration: none;
+		}
+
+		/* fancy Button */
+		.fancy-button {
+			display: inline-block;
+			margin: 30px;
+			font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+			font-size: 17px;
+			letter-spacing: 0.03em;
+			text-transform: uppercase;
+			color: #ffffff;
+			position: relative;
+		}
+
+		.fancy-button:before {
+			content: '';
+			display: inline-block;
+			height: 40px;
+			position: absolute;
+			bottom: -5px;
+			left: 30px;
+			right: 30px;
+			z-index: -1;
+			border-radius: 30em;
+			filter: blur(20px) brightness(0.95);
+			transform-style: preserve-3d;
+			transition: all 0.3s ease-out;
+		}
+
+
+
+		.fancy-button span {
+			display: inline-block;
+			padding: 18px 60px;
+			border-radius: 50em;
+			position: relative;
+			z-index: 2;
+			will-change: transform, filter;
+			transform-style: preserve-3d;
+			transition: all 0.3s ease-out;
+		}
+
+		.fancy-button:focus,
+		.fancy-button:active {
+			color: #ffffff;
+		}
+
+		.fancy-button:hover {
+			color: #ffffff;
+		}
+
+		.fancy-button:hover span {
+			filter: brightness(1.05) contrast(1.05);
+			transform: scale(0.95);
+		}
+
+		.fancy-button:hover:before {
+			bottom: 0;
+			filter: blur(10px) brightness(0.95);
+		}
+
+		.fancy-button.pop-onhover:before {
+			opacity: 0;
+			bottom: 10px;
+		}
+
+		.fancy-button.pop-onhover:hover:before {
+			bottom: -7px;
+			opacity: 1;
+			filter: blur(20px);
+		}
+
+		.fancy-button.pop-onhover:hover span {
+			transform: scale(1.04);
+		}
+
+		.fancy-button.pop-onhover:hover:active span {
+			filter: brightness(1) contrast(1);
+			transform: scale(1);
+			transition: all 0.15s ease-out;
+		}
+
+		.fancy-button.pop-onhover:hover:active:before {
+			bottom: 0;
+			filter: blur(10px) brightness(0.95);
+			transition: all 0.2s ease-out;
+		}
+
+		p {
+
+			font-size: 2rem;
+			margin-top: 30px;
+		}
+
+		#popupdiv {
+			overflow: hidden;
+		}
+	</style>
+
 </head>
 
 <body>
-	
+
+	<p align="center">Enter no to double it on click on cancel button and print as same on click on submit button.
+	</p>
+
+	<div id="but" class="wrapper">
+		<a href="#" class="fancy-button bg-gradient1"><span>Quantum Alert</span></a>
+	</div>
+	<script src="https://cdn.jsdelivr.net/gh/cosmogicofficial/quantumalert@latest/minfile/quantumalert.js"
+		charset="utf-8"></script>
+
 	<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
 	<script>
+		// inx is a predefined variable that stores the current value of input field in Quantum alert
+
+		var elem = document.getElementById('but');
+		elem.onclick = function call() {
+			Qual.confirmd("What is the Name of your Project ?", //For heading
+				"", //For sub heading
+				inf, //icon variable we can define our own also by giving th link in double quotes
+				"Submit", //blue button string
+				"", // cancel button string
+				"SubmitFun", //function name that is to be called on click on blue button
+				"", //function name that is to be called on click on cancel button
+				"string", //type of input you want whether a text ,password or number
+				"Enter Project Name" //Placeholder text of input field
+			);
+		}
+
+		var data;
+		// Declare variable and copy value of inx to that variable
+		function SubmitFun() {
+			let data = inx;
+			console.log(data);
+			Qual.successd("Success");
+		}
+
+	
+
+
+
 		const options = {
 			bottom: 'unset', // default: '32px'
 			right: '32px', // default: '32px'
